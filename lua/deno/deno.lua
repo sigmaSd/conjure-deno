@@ -21,8 +21,6 @@ _2amodule_locals_2a["nvim"] = nvim
 _2amodule_locals_2a["promise"] = promise
 _2amodule_locals_2a["stdio"] = stdio
 _2amodule_locals_2a["str"] = str
-local buf_suffix = ".ts"
-_2amodule_2a["buf-suffix"] = buf_suffix
 local comment_prefix = "// "
 _2amodule_2a["comment-prefix"] = comment_prefix
 config.merge({client = {deno = {deno = {mapping = {start = "cs", stop = "cS", interrupt = "ei", reset_repl = "rr"}, command = "deno --unstable", prompt_pattern = "> "}}}})
