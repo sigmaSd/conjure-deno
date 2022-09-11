@@ -62,7 +62,7 @@
        (str.join "")))
 
 (defn- prep-code [s]
-  (.. s "\n"))
+  (.. (string.gsub s "\n" " ") "\n"))
 
 ; Start/Stop
 

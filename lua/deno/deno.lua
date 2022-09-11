@@ -75,7 +75,7 @@ local function unbatch(msgs)
 end
 _2amodule_locals_2a["unbatch"] = unbatch
 local function prep_code(s)
-  return (s .. "\n")
+  return (string.gsub(s, "\n", " ") .. "\n")
 end
 _2amodule_locals_2a["prep-code"] = prep_code
 local function stop()
