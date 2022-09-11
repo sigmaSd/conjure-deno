@@ -108,8 +108,6 @@
          (fn [msg]
            (display-result (-> [msg] unbatch format-msg) {:join-first? true}))}))))
 
-(defn on-load []
-  (start))
 
 (defn on-exit []
   (stop))
@@ -128,7 +126,11 @@
 
 (defn on-filetype []
   (mapping.buf :n :DenoResetREPL
-               (cfg [:mapping :reset_repl]) *module-name* :reset-repl))
+               (cfg [:mapping :reset_repl]) *module-name* :reset-repl)
+  (mapping.buf :n :DenoStartREPL
+               (cfg [:mapping :start]) *module-name* :start)
+  (mapping.buf :n :DenoStopREPL
+               (cfg [:mapping :stop]) *module-name* :stop))
 
 ; Eval
 

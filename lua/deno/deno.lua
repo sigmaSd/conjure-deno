@@ -119,10 +119,6 @@ local function start()
   end
 end
 _2amodule_2a["start"] = start
-local function on_load()
-  return start()
-end
-_2amodule_2a["on-load"] = on_load
 local function on_exit()
   return stop()
 end
@@ -141,7 +137,9 @@ local function reset_repl(filename)
 end
 _2amodule_2a["reset-repl"] = reset_repl
 local function on_filetype()
-  return mapping.buf("n", "DenoResetREPL", cfg({"mapping", "reset_repl"}), _2amodule_name_2a, "reset-repl")
+  mapping.buf("n", "DenoResetREPL", cfg({"mapping", "reset_repl"}), _2amodule_name_2a, "reset-repl")
+  mapping.buf("n", "DenoStartREPL", cfg({"mapping", "start"}), _2amodule_name_2a, "start")
+  return mapping.buf("n", "DenoStopREPL", cfg({"mapping", "stop"}), _2amodule_name_2a, "stop")
 end
 _2amodule_2a["on-filetype"] = on_filetype
 local function eval_str(opts)
