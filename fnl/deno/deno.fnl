@@ -9,6 +9,7 @@
              config conjure.config
              client conjure.client}})
 
+(def buf-suffix ".ts")
 (def comment-prefix "// ")
 
 (config.merge
