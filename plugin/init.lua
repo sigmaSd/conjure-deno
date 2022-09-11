@@ -1,0 +1,1 @@
+require("deno.deno")
