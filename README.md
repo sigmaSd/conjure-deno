@@ -9,7 +9,10 @@ Use deno repl with conjure
 - Add the plugin 
 
 ```lua
-use 'Olical/conjure' -- conjure
+use {
+  'Olical/conjure',
+  branch = 'develop', -- needed for now until next conjure release
+}
 use 'sigmaSd/conjure-deno' -- deno support
 ```
 
