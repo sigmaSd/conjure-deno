@@ -6,7 +6,7 @@ Use deno repl with conjure
 
 # Installation
 
-- Add the plugin 
+- Add the plugin
 
 ```lua
 use {
@@ -16,36 +16,38 @@ use {
 use 'sigmaSd/conjure-deno' -- deno support
 ```
 
-- Wire the plugin: Add these lines somewhere in your nvim config for example in `init.lua`
+- Wire the plugin: Add these lines somewhere in your nvim config for example in
+  `init.lua`
 
 ```lua
 local conjure_filetypes = { "clojure", "fennel", "janet", "hy", "julia", "racket", "scheme", "lua", "lisp",
     "rust" }
-for _, v in pairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
+for _, v in pairs({ "typescript", "javascript" }) do
     conjure_filetypes[#conjure_filetypes + 1] = v
 end
 
 vim.g["conjure#filetypes"] = conjure_filetypes
 
-local deno                                = "deno.deno"
-vim.g["conjure#filetype#typescript"]      = deno
-vim.g["conjure#filetype#typescriptreact"] = deno
-vim.g["conjure#filetype#javascript"]      = deno
-vim.g["conjure#filetype#javascriptreact"] = deno
+vim.g["conjure#filetype#typescript"]      = "deno.deno"
+vim.g["conjure#filetype#javascript"]      = "deno.deno"
 ```
 
 # Usage
 
 - Open a supported filetype
 - Use `<leader>cs` to start the repl
-- You can now use the repl, if you're unsure about the bindings just run `:ConjureSchool` to learn more
+- You can now use the repl, if you're unsure about the bindings just run
+  `:ConjureSchool` to learn more
 
 # Limitation
 
-Statements should end with `;` , if you use `deno fmt` this is done automatically.
+Statements should end with `;` , if you use `deno fmt` this is done
+automatically.
 
-This limitation is on purpose to allow sending multi-lines input to the repl in the constraints of stdio ipc
+This limitation is on purpose to allow sending multi-lines input to the repl in
+the constraints of stdio ipc
 
 # Development
 
-To hack on this plugin first run `make deps` then after each change to the fnl files run `make compile`
+To hack on this plugin first run `make deps` then after each change to the fnl
+files run `make compile`
