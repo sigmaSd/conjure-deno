@@ -36,6 +36,20 @@ vim.g["conjure#filetype#javascript"]      = "deno.deno"
 - You can now use the repl, if you're unsure about the bindings just run
   `:ConjureSchool` to learn more
 
+Note:
+
+To stop the lsp diagnostics in the log buffer you can detach it manually using
+this command:
+
+```lua
+function DetachBufferFromClients(bufnr)
+    local clients = vim.lsp.buf_get_clients(bufnr)
+    for client_id, _ in pairs(clients) do
+        vim.lsp.buf_detach_client(bufnr, client_id)
+    end
+end
+```
+
 # Limitation
 
 Statements should end with `;` , if you use `deno fmt` this is done
