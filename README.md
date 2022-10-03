@@ -4,7 +4,7 @@
 
 Use deno repl with conjure
 
-# Installation
+## Installation
 
 - Add the plugin
 
@@ -29,14 +29,14 @@ vim.g["conjure#filetype#typescript"]      = "deno.deno"
 vim.g["conjure#filetype#javascript"]      = "deno.deno"
 ```
 
-# Usage
+## Usage
 
 - Open a supported filetype
 - Use `<leader>cs` to start the repl
 - You can now use the repl, if you're unsure about the bindings just run
   `:ConjureSchool` to learn more
 
-Note:
+**Note:**
 
 To stop the lsp diagnostics in the log buffer you can detach it manually using
 this command:
@@ -50,7 +50,7 @@ function DetachBufferFromClients(bufnr)
 end
 ```
 
-# Limitation
+## Limitation
 
 Statements should end with `;` , if you use `deno fmt` this is done
 automatically.
@@ -58,7 +58,7 @@ automatically.
 This limitation is on purpose to allow sending multi-lines input to the repl in
 the constraints of stdio ipc
 
-# Development
+## Development
 
 To hack on this plugin first run `make deps` then after each change to the fnl
 files run `make compile`
