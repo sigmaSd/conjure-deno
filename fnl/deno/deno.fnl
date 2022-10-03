@@ -125,12 +125,20 @@
   )
 
 (defn on-filetype []
-  (mapping.buf :n :DenoResetREPL
-               (cfg [:mapping :reset_repl]) *module-name* :reset-repl)
-  (mapping.buf :n :DenoStartREPL
-               (cfg [:mapping :start]) *module-name* :start)
-  (mapping.buf :n :DenoStopREPL
-               (cfg [:mapping :stop]) *module-name* :stop))
+  (mapping.buf
+    :DenoStart (cfg [:mapping :start])
+    start
+    {:desc "Start the REPL"})
+
+  (mapping.buf
+    :DenoStop (cfg [:mapping :stop])
+    stop
+    {:desc "Stop the REPL"})
+
+  (mapping.buf
+    :DenoInterrupt (cfg [:mapping :interrupt])
+    interrupt
+    {:desc "Interrupt the evaluation"}))
 
 ; Eval
 

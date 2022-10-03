@@ -137,9 +137,9 @@ local function reset_repl(filename)
 end
 _2amodule_2a["reset-repl"] = reset_repl
 local function on_filetype()
-  mapping.buf("n", "DenoResetREPL", cfg({"mapping", "reset_repl"}), _2amodule_name_2a, "reset-repl")
-  mapping.buf("n", "DenoStartREPL", cfg({"mapping", "start"}), _2amodule_name_2a, "start")
-  return mapping.buf("n", "DenoStopREPL", cfg({"mapping", "stop"}), _2amodule_name_2a, "stop")
+  mapping.buf("DenoStart", cfg({"mapping", "start"}), start, {desc = "Start the REPL"})
+  mapping.buf("DenoStop", cfg({"mapping", "stop"}), stop, {desc = "Stop the REPL"})
+  return mapping.buf("DenoInterrupt", cfg({"mapping", "interrupt"}), interrupt, {desc = "Interrupt the evaluation"})
 end
 _2amodule_2a["on-filetype"] = on_filetype
 local function eval_str(opts)

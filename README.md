@@ -9,11 +9,8 @@ Use deno repl with conjure
 - Add the plugin
 
 ```lua
-use {
-  'Olical/conjure',
-  branch = 'develop', -- needed for now until next conjure release
-}
-use 'sigmaSd/conjure-deno' -- deno support
+use { 'Olical/conjure' }
+use 'sigmaSd/conjure-deno'
 ```
 
 - Wire the plugin: Add these lines somewhere in your nvim config for example in
