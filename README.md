@@ -38,8 +38,7 @@ vim.g["conjure#filetype#javascript"]      = "deno.deno"
 
 **Note:**
 
-To stop the lsp diagnostics in the log buffer you can use:
-this command:
+To stop the lsp diagnostics in the log buffer you can use this command:
 
 ```lua
 lua vim.diagnostic.disable(0)
