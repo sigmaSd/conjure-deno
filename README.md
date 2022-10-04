@@ -36,14 +36,6 @@ vim.g["conjure#filetype#javascript"]      = "deno.deno"
 - You can now use the repl, if you're unsure about the bindings just run
   `:ConjureSchool` to learn more
 
-## Limitation
-
-Statements should end with `;` , if you use `deno fmt` this is done
-automatically.
-
-This limitation is on purpose to allow sending multi-lines input to the repl in
-the constraints of stdio ipc
-
 ## Development
 
 To hack on this plugin first run `make deps` then after each change to the fnl

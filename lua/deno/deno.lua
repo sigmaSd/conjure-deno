@@ -143,6 +143,7 @@ local function on_filetype()
 end
 _2amodule_2a["on-filetype"] = on_filetype
 local function eval_str(opts)
+  vim.lsp.buf.format()
   local function _17_(repl)
     local function _18_(msgs)
       local msgs0 = format_msg(unbatch(msgs))

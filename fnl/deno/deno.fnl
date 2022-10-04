@@ -153,6 +153,10 @@
 ; Eval
 
 (defn eval-str [opts]
+  ;; Format the file so all lines ends with `;`
+  ;; This allows handling multi-line statements correctly
+  (vim.lsp.buf.format )
+
   (with-repl-or-warn
     (fn [repl]
       (repl.send
