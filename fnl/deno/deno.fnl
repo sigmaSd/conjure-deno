@@ -63,7 +63,9 @@
        (str.join "")))
 
 (defn- prep-code [s]
-  (.. (string.gsub s "\n" " ") "\n"))
+   (.. (->> (str.split s "\n")
+        (a.filter #(not (string.match $1 "^//")))
+        (str.join " ")) "\n"))
 
 ; Start/Stop
 
@@ -153,10 +155,6 @@
 ; Eval
 
 (defn eval-str [opts]
-  ;; Format the file so all lines ends with `;`
-  ;; This allows handling multi-line statements correctly
-  (vim.lsp.buf.format )
-
   (with-repl-or-warn
     (fn [repl]
       (repl.send

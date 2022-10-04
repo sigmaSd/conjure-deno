@@ -77,7 +77,10 @@ local function unbatch(msgs)
 end
 _2amodule_locals_2a["unbatch"] = unbatch
 local function prep_code(s)
-  return (string.gsub(s, "\n", " ") .. "\n")
+  local function _8_(_241)
+    return not string.match(_241, "^//")
+  end
+  return (str.join(" ", a.filter(_8_, str.split(s, "\n"))) .. "\n")
 end
 _2amodule_locals_2a["prep-code"] = prep_code
 local function stop()
@@ -95,13 +98,13 @@ local function start()
   if state("repl") then
     return log.append({(comment_prefix .. "Can't start, REPL is already running."), (comment_prefix .. "Stop the REPL with " .. config["get-in"]({"mapping", "prefix"}) .. cfg({"mapping", "stop"}))}, {["break?"] = true})
   else
-    local function _9_()
+    local function _10_()
     end
-    local function _10_(err)
+    local function _11_(err)
       log.append({"error"})
       return display_repl_status(err)
     end
-    local function _11_(code, signal)
+    local function _12_(code, signal)
       if (("number" == type(code)) and (code > 0)) then
         log.append({(comment_prefix .. "process exited with code " .. code)})
       else
@@ -112,10 +115,10 @@ local function start()
       end
       return stop()
     end
-    local function _14_(msg)
+    local function _15_(msg)
       return display_result(format_msg(unbatch({msg})), {["join-first?"] = true})
     end
-    return a.assoc(state(), "repl", stdio.start({["prompt-pattern"] = cfg({"prompt_pattern"}), cmd = cfg({"command"}), env = {NO_COLOR = 1}, ["on-success"] = _9_, ["on-error"] = _10_, ["on-exit"] = _11_, ["on-stray-output"] = _14_}))
+    return a.assoc(state(), "repl", stdio.start({["prompt-pattern"] = cfg({"prompt_pattern"}), cmd = cfg({"command"}), env = {NO_COLOR = 1}, ["on-success"] = _10_, ["on-error"] = _11_, ["on-exit"] = _12_, ["on-stray-output"] = _15_}))
   end
 end
 _2amodule_2a["start"] = start
@@ -124,11 +127,11 @@ local function on_exit()
 end
 _2amodule_2a["on-exit"] = on_exit
 local function interrupt()
-  local function _16_(repl)
+  local function _17_(repl)
     local uv = vim.loop
     return uv.kill(repl.pid, uv.constants.SIGINT)
   end
-  return with_repl_or_warn(_16_)
+  return with_repl_or_warn(_17_)
 end
 _2amodule_2a["interrupt"] = interrupt
 local function reset_repl(filename)
@@ -143,9 +146,8 @@ local function on_filetype()
 end
 _2amodule_2a["on-filetype"] = on_filetype
 local function eval_str(opts)
-  vim.lsp.buf.format()
-  local function _17_(repl)
-    local function _18_(msgs)
+  local function _18_(repl)
+    local function _19_(msgs)
       local msgs0 = format_msg(unbatch(msgs))
       display_result(msgs0)
       if opts["on-result"] then
@@ -154,17 +156,17 @@ local function eval_str(opts)
         return nil
       end
     end
-    return repl.send(prep_code(opts.code), _18_, {["batch?"] = true})
+    return repl.send(prep_code(opts.code), _19_, {["batch?"] = true})
   end
-  return with_repl_or_warn(_17_)
+  return with_repl_or_warn(_18_)
 end
 _2amodule_2a["eval-str"] = eval_str
 local function eval_file(opts)
   return eval_str(a.assoc(opts, "code", a.slurp(opts["file-path"])))
 end
 _2amodule_2a["eval-file"] = eval_file
-local function _20_(params)
+local function _21_(params)
   return vim.diagnostic.disable(params.buf)
 end
-vim.api.nvim_create_autocmd("BufNewFile", {group = vim.api.nvim_create_augroup("conjure_log_buf", {clear = true}), pattern = "conjure-log-*", callback = _20_})
+vim.api.nvim_create_autocmd("BufNewFile", {group = vim.api.nvim_create_augroup("conjure_log_buf", {clear = true}), pattern = "conjure-log-*", callback = _21_})
 return _2amodule_2a
