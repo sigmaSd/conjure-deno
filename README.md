@@ -36,14 +36,6 @@ vim.g["conjure#filetype#javascript"]      = "deno.deno"
 - You can now use the repl, if you're unsure about the bindings just run
   `:ConjureSchool` to learn more
 
-**Note:**
-
-To stop the lsp diagnostics in the log buffer you can use this command:
-
-```lua
-:lua vim.diagnostic.disable(0)
-```
-
 ## Limitation
 
 Statements should end with `;` , if you use `deno fmt` this is done

@@ -88,6 +88,16 @@
          :cmd (cfg [:command])
          :env {:NO_COLOR 1}
 
+;;          vim.api.nvim_create_autocmd("BufNewFile", {
+;;     group = vim.api.nvim_create_augroup("conjure_log_buf", { clear = true }),
+;;     pattern = "conjure-log-*",
+;;     callback = function(params)
+;;         local bufnr = params.buf
+;;         vim.diagnostic.disable(bufnr)
+;;     end
+;; })
+
+
          :on-success
          (fn [])
 
@@ -157,3 +167,10 @@
 (defn eval-file [opts]
   (eval-str (a.assoc opts :code (a.slurp opts.file-path))))
 
+;; disable diagnostics on the log buffer
+(vim.api.nvim_create_autocmd "BufNewFile" 
+{
+    :group (vim.api.nvim_create_augroup "conjure_log_buf" { :clear true } )
+    :pattern "conjure-log-*"
+    :callback (fn [params] (vim.diagnostic.disable params.buf))
+}) 

@@ -162,4 +162,8 @@ local function eval_file(opts)
   return eval_str(a.assoc(opts, "code", a.slurp(opts["file-path"])))
 end
 _2amodule_2a["eval-file"] = eval_file
+local function _20_(params)
+  return vim.diagnostic.disable(params.buf)
+end
+vim.api.nvim_create_autocmd("BufNewFile", {group = vim.api.nvim_create_augroup("conjure_log_buf", {clear = true}), pattern = "conjure-log-*", callback = _20_})
 return _2amodule_2a
