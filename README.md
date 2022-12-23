@@ -44,6 +44,10 @@ automatically (it works even better if you have format on save).
 This limitation is on purpose to allow sending multi-lines input to the repl in
 the constraints of stdio ipc
 
+## Node
+
+If you want to use this as a node repl (since its really similar), you need to change the deno command here https://github.com/sigmaSd/conjure-deno/blob/403372515621c15833a32abb420e95d0e041f917/fnl/deno/deno.fnl#L24 to `"node --eval require(\"repl\").start()"` and then compile the plugin.
+
 ## Development
 
 To hack on this plugin first run `make deps` then after each change to the fnl
