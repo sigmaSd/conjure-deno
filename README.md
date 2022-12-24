@@ -1,6 +1,5 @@
 # Conjure - Deno
-
-![image](https://user-images.githubusercontent.com/22427111/189539787-20e735fe-8509-4b80-970a-43f772cc2849.png)
+![image](https://user-images.githubusercontent.com/22427111/209433347-f5638bca-a60f-4ef3-8c94-ea404b4a8eda.png)
 
 Use deno repl with conjure
 
