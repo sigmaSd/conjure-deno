@@ -9,7 +9,12 @@ Use deno repl with conjure
 - Add the plugin
 
 ```lua
-use { 'Olical/conjure' }
+-- requires tree sitter, to figure the evaluation scope
+use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+}
+use 'Olical/conjure'
 use 'sigmaSd/conjure-deno'
 ```
 
@@ -27,6 +32,12 @@ vim.g["conjure#filetypes"] = conjure_filetypes
 
 vim.g["conjure#filetype#typescript"]      = "deno.deno"
 vim.g["conjure#filetype#javascript"]      = "deno.deno"
+```
+
+- Make sure to have tree sitter enabled, and the correct parsers installed
+```
+:TSInstall javascript
+:TSInstall typescript
 ```
 
 ## Usage
