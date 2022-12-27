@@ -78,9 +78,9 @@ end
 _2amodule_locals_2a["unbatch"] = unbatch
 local function prep_code(s)
   local function _8_(_241)
-    return not string.match(_241, "^//")
+    return string.gsub(_241, "//.*", "")
   end
-  return (str.join(" ", a.filter(_8_, str.split(s, "\n"))) .. "\n")
+  return (str.join(" ", a.map(_8_, str.split(s, "\n"))) .. "\n")
 end
 _2amodule_locals_2a["prep-code"] = prep_code
 local function stop()

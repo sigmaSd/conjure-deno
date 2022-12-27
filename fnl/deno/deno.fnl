@@ -64,8 +64,9 @@
 
 (defn- prep-code [s]
    (.. (->> (str.split s "\n")
-        (a.filter #(not (string.match $1 "^//")))
+        (a.map #(string.gsub $1 "//.*" ""))
         (str.join " ")) "\n"))
+
 
 ; Start/Stop
 
