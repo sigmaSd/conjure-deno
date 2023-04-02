@@ -62,3 +62,40 @@ If you want to use this as a node repl (since its really similar), you need to c
 
 To hack on this plugin first run `make deps` then after each change to the fnl
 files run `make compile`
+
+## Alternative
+
+https://github.com/Vigemus/iron.nvim
+```lua
+local iron = require("iron.core")
+
+iron.setup {
+  config = {
+    scratch_repl = true,
+    repl_definition = {
+      typescript = {
+        command = { "deno" },
+        format = require("iron.fts.common").bracketed_paste
+      },
+    },
+    repl_open_cmd = require("iron.view").split.vertical.botright(50)
+  },
+  -- Iron doesn't set keymaps by default anymore.
+  -- You can set them here or manually add keymaps to the functions in iron.core
+  keymaps = {
+    visual_send = "<space>is",
+    send_file = "<space>if",
+    send_line = "<space>il",
+    cr = "<space>i<cr>",
+    interrupt = "<space>i<space>",
+    exit = "<space>iq",
+    clear = "<space>ic",
+  },
+  -- If the highlight is on, you can change how it looks
+  -- For the available options, check nvim_set_hl
+  highlight = {
+    italic = true
+  },
+  ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
+}
+```
