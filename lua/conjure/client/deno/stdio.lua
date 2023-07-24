@@ -1,5 +1,5 @@
-local _2afile_2a = "fnl/deno/deno.fnl"
-local _2amodule_name_2a = "conjure.client.deno.deno"
+local _2afile_2a = "fnl/conjure/client/deno/stdio.fnl"
+local _2amodule_name_2a = "conjure.client.deno.stdio"
 local _2amodule_2a
 do
   package.loaded[_2amodule_name_2a] = {}
@@ -10,7 +10,7 @@ do
   _2amodule_2a["aniseed/locals"] = {}
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
-local autoload = (require("deno.aniseed.autoload")).autoload
+local autoload = (require("aniseed.autoload")).autoload
 local a, client, config, log, mapping, nvim, promise, stdio, str = autoload("conjure.aniseed.core"), autoload("conjure.client"), autoload("conjure.config"), autoload("conjure.log"), autoload("conjure.mapping"), autoload("conjure.aniseed.nvim"), autoload("conjure.promise"), autoload("conjure.remote.stdio"), autoload("conjure.aniseed.string")
 do end (_2amodule_locals_2a)["a"] = a
 _2amodule_locals_2a["client"] = client
@@ -25,8 +25,8 @@ local buf_suffix = ".ts"
 _2amodule_2a["buf-suffix"] = buf_suffix
 local comment_prefix = "// "
 _2amodule_2a["comment-prefix"] = comment_prefix
-config.merge({client = {deno = {deno = {mapping = {start = "cs", stop = "cS", interrupt = "ei", reset_repl = "rr"}, command = "deno --unstable", prompt_pattern = "> "}}}})
-local cfg = config["get-in-fn"]({"client", "deno", "deno"})
+config.merge({client = {deno = {stdio = {mapping = {start = "cs", stop = "cS", interrupt = "ei", reset_repl = "rr"}, command = "deno --unstable", prompt_pattern = "> "}}}})
+local cfg = config["get-in-fn"]({"client", "deno", "stdio"})
 do end (_2amodule_locals_2a)["cfg"] = cfg
 local state
 local function _1_()
@@ -165,8 +165,4 @@ local function eval_file(opts)
   return eval_str(a.assoc(opts, "code", a.slurp(opts["file-path"])))
 end
 _2amodule_2a["eval-file"] = eval_file
-local function _21_(params)
-  return vim.diagnostic.disable(params.buf)
-end
-vim.api.nvim_create_autocmd("BufNewFile", {group = vim.api.nvim_create_augroup("conjure_log_buf", {clear = true}), pattern = "conjure-log-*", callback = _21_})
 return _2amodule_2a

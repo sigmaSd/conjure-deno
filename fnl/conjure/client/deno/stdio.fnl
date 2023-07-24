@@ -1,4 +1,4 @@
-(module conjure.client.deno.deno
+(module conjure.client.deno.stdio
   {autoload {a conjure.aniseed.core
              promise conjure.promise
              str conjure.aniseed.string
@@ -15,7 +15,7 @@
 (config.merge
   {:client
    {:deno
-    {:deno
+    {:stdio
      {:mapping {:start "cs"
                 :stop "cS"
                 :interrupt "ei"
@@ -25,7 +25,7 @@
       :prompt_pattern "> "}}}})
 
 
-(def- cfg (config.get-in-fn [:client :deno :deno]))
+(def- cfg (config.get-in-fn [:client :deno :stdio]))
 
 (defonce- state (client.new-state #(do {:repl nil})))
 
@@ -90,16 +90,6 @@
         {:prompt-pattern (cfg [:prompt_pattern])
          :cmd (cfg [:command])
          :env {:NO_COLOR 1}
-
-;;          vim.api.nvim_create_autocmd("BufNewFile", {
-;;     group = vim.api.nvim_create_augroup("conjure_log_buf", { clear = true }),
-;;     pattern = "conjure-log-*",
-;;     callback = function(params)
-;;         local bufnr = params.buf
-;;         vim.diagnostic.disable(bufnr)
-;;     end
-;; })
-
 
          :on-success
          (fn [])
@@ -170,10 +160,3 @@
 (defn eval-file [opts]
   (eval-str (a.assoc opts :code (a.slurp opts.file-path))))
 
-;; disable diagnostics on the log buffer
-(vim.api.nvim_create_autocmd "BufNewFile" 
-{
-    :group (vim.api.nvim_create_augroup "conjure_log_buf" { :clear true } )
-    :pattern "conjure-log-*"
-    :callback (fn [params] (vim.diagnostic.disable params.buf))
-}) 
