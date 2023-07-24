@@ -17,21 +17,7 @@ use 'Olical/conjure'
 use 'sigmaSd/conjure-deno'
 ```
 
-- Wire the plugin: Add these lines somewhere in your nvim config for example in
-  `init.lua`
-
-```lua
-local conjure_filetypes = { "clojure", "fennel", "janet", "hy", "julia", "racket", "scheme", "lua", "lisp",
-    "rust" }
-for _, v in pairs({ "typescript", "javascript" }) do
-    conjure_filetypes[#conjure_filetypes + 1] = v
-end
-
-vim.g["conjure#filetypes"] = conjure_filetypes
-
-vim.g["conjure#filetype#typescript"]      = "deno.deno"
-vim.g["conjure#filetype#javascript"]      = "deno.deno"
-```
+- The plugin will automatically be wired into Conjure.
 
 - Make sure to have tree sitter enabled, and the correct parsers installed
 ```
