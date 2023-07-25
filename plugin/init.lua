@@ -1,1 +1,1 @@
-require("deno.deno")
+require("conjure.client.deno.stdio")
