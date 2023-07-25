@@ -11,7 +11,7 @@ vim.g['conjure#filetype#javascript'] = 'conjure.client.deno.stdio'
 -- Add autocmds for this Conjure client.
 vim.api.nvim_create_autocmd({"FileType"}, {
   pattern = {"typescript", "javascript"},
-  command = "lua require('conjure.mapping')['on-filetype']()",
+  callback = function() require('conjure.mapping')['on-filetype']() end,
   group = "conjure_init_filetypes"
 })
 
@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd({"FileType"}, {
 vim.api.nvim_create_augroup("conjure_log_buf",{})
 vim.api.nvim_create_autocmd({"BufNewFile"}, {
   pattern = "conjure-log-*",
-  command = "lua vim.diagnostic.disable(0)",
+  callback = function() vim.diagnostic.disable(0) end,
   group = "conjure_log_buf"
 })
 
